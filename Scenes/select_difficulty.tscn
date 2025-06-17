@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://c48em8rppi38"]
+
+[ext_resource type="Texture2D" uid="uid://cg3cgq4f1701f" path="res://Assets/Main Menu/LOGO 01 Artboard 1.png" id="2_5cxd0"]
+[ext_resource type="Texture2D" uid="uid://dc4ag81wg42qy" path="res://Assets/Main Menu/Tela inicial.png" id="2_7l83n"]
+
+[sub_resource type="GDScript" id="GDScript_bjx74"]
+script/source = "extends Node
+
+func _on_botao_facil_pressed():
+	Globals.dificuldade = \"facil\"
+	get_tree().change_scene_to_file(\"res://Scenes/tilemap.tscn\")
+
+func _on_botao_medio_pressed():
+	Globals.dificuldade = \"medio\"
+	get_tree().change_scene_to_file(\"res://Scenes/tilemap.tscn\")
+
+func _on_botao_dificil_pressed():
+	Globals.dificuldade = \"dificil\"
+	get_tree().change_scene_to_file(\"res://Scenes/tilemap.tscn\")
+
+func _on_botao_voltar_pressed():
+	get_tree().change_scene_to_file(\"res://Scenes/main_menu.tscn\")
+"
+
+[sub_resource type="SystemFont" id="SystemFont_5wlmj"]
+
+[sub_resource type="SystemFont" id="SystemFont_kvfcp"]
+
+[sub_resource type="SystemFont" id="SystemFont_p64ik"]
+
+[sub_resource type="SystemFont" id="SystemFont_u3fs5"]
+
+[node name="SelectDifficulty" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = 315.0
+offset_right = 89.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_bjx74")
+
+[node name="PlanoFundo" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -316.0
+offset_right = -88.0
+offset_bottom = -316.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7l83n")
+
+[node name="Logo" type="TextureRect" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+offset_left = -88.0
+offset_top = -316.0
+offset_right = -88.0
+offset_bottom = -316.0
+texture = ExtResource("2_5cxd0")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = -105.0
+offset_right = 250.0
+offset_bottom = 147.0
+
+[node name="BotaoFacil" type="Button" parent="VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_5wlmj")
+theme_override_font_sizes/font_size = 30
+text = "FÁCIL"
+
+[node name="BotaoMedio" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_kvfcp")
+theme_override_font_sizes/font_size = 30
+text = "MÉDIO"
+
+[node name="BotaoDificil" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_p64ik")
+theme_override_font_sizes/font_size = 30
+text = "DIFÍCIL"
+
+[node name="BotaoVoltar" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_u3fs5")
+theme_override_font_sizes/font_size = 30
+text = "VOLTAR"
+
+[connection signal="pressed" from="VBoxContainer/BotaoFacil" to="." method="_on_botao_facil_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotaoMedio" to="." method="_on_botao_medio_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotaoDificil" to="." method="_on_botao_dificil_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotaoVoltar" to="." method="_on_botao_voltar_pressed"]

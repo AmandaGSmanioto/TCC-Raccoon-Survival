@@ -1,0 +1,4 @@
+cima:19
+baixo:18
+esquerda:39
+direita:32
